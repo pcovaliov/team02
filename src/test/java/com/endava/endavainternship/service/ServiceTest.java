@@ -38,6 +38,7 @@ public class ServiceTest {
 	  Random r = new Random();
 	  int i1 = r.nextInt(max - min + 1) + min;
 	  
+	  
 	  user1.setEmail("test"+i1+"@mail.com");
 	  user1.setFirstname("Test");
 	  user1.setLastname("newUser");

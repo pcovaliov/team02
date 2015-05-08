@@ -35,7 +35,7 @@ public class HomeController {
 	private UserService userService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	//test comments
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */

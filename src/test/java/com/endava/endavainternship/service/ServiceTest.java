@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.runners.MethodSorters;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.springframework.context.ApplicationContext;
@@ -50,7 +49,6 @@ public class ServiceTest {
 	  assertTrue(user1 != null);
 	  
 	 }
-	 
 	 
 	@Test
 	public void BFindUserById() {

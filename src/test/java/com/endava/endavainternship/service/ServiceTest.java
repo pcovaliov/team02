@@ -121,7 +121,7 @@ public class ServiceTest {
 
 		 }
 	 
-	 @Ignore
+	 
 	 @Test
 	 @Transactional
 	 public void GDeleteUser(){

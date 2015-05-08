@@ -16,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
@@ -38,11 +40,23 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+			   @RequestParam(value = "limit", required = false, defaultValue = "10") int limit
+			  ) {
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection tweetList = twitterService.getTweetsForUser(currentUser);
+		Collection tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
 		model.addAttribute("tweetObject", new Tweet() );
 		model.addAttribute("tweetList", tweetList );
+		  
+		if(offset < tweetList.size()){
+			  String nextTweetsLink = ServletUriComponentsBuilder.fromCurrentContextPath().path("/?offset="+(offset+limit)).build().toUriString();
+			  model.addAttribute("nextTweetsLink", nextTweetsLink);
+			  }
+			  
+			  if(offset >= 10){
+			   String prevTweetsLink = ServletUriComponentsBuilder.fromCurrentContextPath().path("/?offset="+(offset-limit)).build().toUriString();
+			   model.addAttribute("prevTweetsLink", prevTweetsLink);
+			  }
 		
 		return "home";
 	}

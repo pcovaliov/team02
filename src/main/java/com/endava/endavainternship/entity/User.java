@@ -4,13 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -63,9 +60,6 @@ public class User extends org.springframework.security.core.userdetails.User
 	
 	@Column(name = "Role" , nullable = false, columnDefinition="varchar(15) default 'ROLE_USER'")
 	private String role = "ROLE_USER";
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.REMOVE)
-	private Collection<Tweet> tweets = new ArrayList<Tweet>();
 	
 	public String getRole(){
 		return role;

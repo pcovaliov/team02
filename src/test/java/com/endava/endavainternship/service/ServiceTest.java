@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.runners.MethodSorters;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
 import org.springframework.context.ApplicationContext;
@@ -25,6 +26,8 @@ public class ServiceTest {
 	
 	static List<User> testUsers = new ArrayList<User>();
 	
+	static List<Tweet> testTweet = new ArrayList<Tweet>();
+	 static int sizeTweetList;
 	
 	 @Test
 	 @Transactional
@@ -82,9 +85,46 @@ public class ServiceTest {
 	  assertEquals(user.getLastname(), newLastName);
 	 }
 	 
+	 
 	 @Test
 	 @Transactional
-	 public void EDeleteUser(){
+	 public void EInsertTweet(){
+	 UserService service = (UserService) appContext.getBean("userService");
+	//  User user = service.findUserById(4);
+      User user = service.findUserById(testUsers.get(0).getId());
+	  TwitterService twitterservice = (TwitterService) appContext.getBean("twitterService");
+	  Tweet tweet = new Tweet();
+	  
+	  tweet.setUser(user);
+	  for (int i = 0; i < 10; i++) {
+		   tweet.setTweet("TEST Tweet " + i);
+		   twitterservice.addTweet(tweet);
+		   testTweet.add(tweet);
+		   // for checking number of tweets inserted
+		   sizeTweetList++;
+	  }
+	  assertTrue(tweet.getId() != null);
+	 }
+	 
+	 @Test
+	 @Transactional
+	 public void FGetListOfTweets() {
+		  UserService service = (UserService) appContext.getBean("userService");
+		  User user = service.findUserById(testUsers.get(0).getId());
+
+		  TwitterService twitterservice = (TwitterService) appContext
+		    .getBean("twitterService");
+
+		  List<Tweet> listOfTweet = (List<Tweet>) twitterservice.getTweetsForUser(user);
+          System.out.println(twitterservice.getTweetsForUser(user));
+		  assertTrue(listOfTweet.size() == sizeTweetList);
+
+		 }
+	 
+	 @Ignore
+	 @Test
+	 @Transactional
+	 public void GDeleteUser(){
 		 
 		 UserService service = (UserService) appContext.getBean("userService");
 		 User user = service.findUserById(testUsers.get(0).getId());
@@ -94,34 +134,6 @@ public class ServiceTest {
 		 assertNotNull(user);
 		 
 	 }
-	 
-	 @Test
-	 @Transactional
-	 public void FInsertTweet(){
-	 UserService service = (UserService) appContext.getBean("userService");
-	  User user = service.findUserById(4);
-
-	  TwitterService twitterservice = (TwitterService) appContext.getBean("twitterService");
-	  Tweet tweet = new Tweet();
-	  
-	  tweet.setUser(user);
-	  tweet.setTweet("TEST Tweet");
-	  twitterservice.addTweet(tweet);
-	  
-	  assertTrue(tweet.getId() != null);
-	 }
-	 
-	/* @Test
-	 @Transactional
-	 public void GListOfTweet(){
-		 UserService service = (UserService) appContext.getBean("userService");
-		 User user = service.findUserById(4);
-
-		 TwitterService twitterservice = (TwitterService) appContext.getBean("twitterService");
-		 
-		 
-		 
-	 }	 
-	*/
+	
 }
 

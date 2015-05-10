@@ -8,11 +8,34 @@
 	<head>
 		<title>Login Page</title>
 		<link rel="stylesheet" type="text/css" href="/endavainternship/resources/css/signup.css" />
+		<link rel="stylesheet" type="text/css" href="/endavainternship/resources/css/background.css" />
 		<script type="text/javascript" src="/endavainternship/resources/js/jquery-2.1.3.min.js"></script>
 		<script type="text/javascript" src="/endavainternship/resources/js/signup.js"></script>
 	</head>
 
 	<body>
+	
+	<div id="background-wrap">
+    <div class="x1">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x2">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x3">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x4">
+        <div class="cloud"></div>
+    </div>
+
+    <div class="x5">
+        <div class="cloud"></div>
+    </div>
+</div>
 	
 	<!-- Related javascript - focus on menu tab -->
 	<script>

@@ -27,7 +27,19 @@
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="resources/css/stanley/js/hover.zoom.js"></script>
-    <script src="resources/css/stanley/hover.zoom.conf.js"></script>
+    <script src="resources/css/stanley/js/hover.zoom.conf.js"></script>
+    <script src="resources/css/stanley/js/charCount.js"></script>
+    
+    <!-- Script for Characters Counter -->
+    <script type="text/javascript">
+	$(document).ready(function(){	
+		$("#message").charCount({
+			allowed: 147,		
+			warning: 20,
+			counterText: 'Characters left : '	
+		});
+	});
+</script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -67,19 +79,47 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered" style='float: none'>
 					<img src="resources/css/stanley/img/user.png" alt="Stanley">
-					<h1>Hi, I am ${principal.firstname} ${principal.lastname}</h1>
-					<p>Hello everybody. I'm ${principal.firstname} ${principal.lastname} , an I would like to share with you some news of my life.Follow me !</p>
+					<h1> ${principal.firstname} ${principal.lastname}</h1>
+					<p>Hello everybody. I'm ${principal.firstname} ${principal.lastname} , you can follow me !</p>
 					
-						<style>
+					
+					
+<style>
+.brd {
+    border: 4px solid #1abc9c;  
+    padding: 10px; 
+   }
+   </style>					
+					
+<style>
 textarea {
-    
     align : center;
+}
+label{
+	display:block;
+	font-size:14px;
+	}
+form .counter{
+	position:absolute;
+	right:0;
+	top:0;
+	font-size:20px;
+	font-weight:bold;
+	color:#600;
+	}
+form .warning{color:#e00;}	
+form .exceeded{color:#e00;}	
+.counter{
+margin-top : 325px;
+margin-right: 5%;
+
+
 }
 </style>
 
+<div class = "brd">
 <div>
-<h3 align = "center">Write your tweet buddy :</h3>
-<br>
+<h4 align = "left">Tweet Editor :</h4>
         <div style='width="100%"'>
           
             <div class="form-group">
@@ -87,7 +127,7 @@ textarea {
            
                 <form:form method="post"  commandName="tweetObject"> 
                 
-                 <form:textarea rows="8" cols="50" path="tweet"  cssClass="form-control"  />  
+                 <form:textarea rows="5" cols="50" path="tweet" id = "message" cssClass="form-control" placeholder = "Tweet ..." />  
                   <form:errors path="tweet" cssClass="error" />
                   
                   <br>
@@ -98,7 +138,7 @@ textarea {
             </div> 
  		</div>
  	</div>
- 	
+ 	</div>
  	
  	
  	

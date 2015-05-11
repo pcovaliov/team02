@@ -37,7 +37,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
-	
+	<!-- for logging -->
+	<context-param>
+		<param-name>logdirectory</param-name>
+		<param-value>C://</param-value>
+	</context-param>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>

@@ -72,13 +72,12 @@ public class ServiceTest {
 		Random r = new Random();
 		int randomNumber = r.nextInt(99999 + 1);
 
-		testUser.setEmail("testTweet" + randomNumber + "@mail.com");
 		user.setEmail("test" + randomNumber + "@mail.com");
 		user.setFirstname("Test");
 		user.setLastname("InsertnewUser");
 
 		userService.addUser(user);
-
+		assertTrue(user != null);
 	}
 
 	@Test
@@ -95,7 +94,7 @@ public class ServiceTest {
 
 		User user = userService.findUserByEmail(testUser.getEmail());
 
-		assertNull(user);
+		assertNotNull(user);
 
 	}
 

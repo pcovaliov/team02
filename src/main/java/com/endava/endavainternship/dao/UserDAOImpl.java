@@ -49,6 +49,7 @@ public class UserDAOImpl implements UserDAO {
 		List result = sessionFactory.getCurrentSession()
 				.createQuery("from User as u where u.email=?")
 				.setString(0, email).list();
+		System.out.println(result.size());
 		if (result.size() != 0) {
 			return (User) result.get(0); // returning first element
 		} else {

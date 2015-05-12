@@ -23,7 +23,7 @@ import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
 import com.endava.endavainternship.service.TwitterService;
 import com.endava.endavainternship.service.UserService;
-
+//test comment
 /**
  * Handles requests for the application home page.
  */

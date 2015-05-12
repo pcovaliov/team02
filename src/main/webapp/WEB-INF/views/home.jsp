@@ -88,6 +88,7 @@
 .brd {
     border: 4px solid #1abc9c;  
     padding: 10px; 
+    border-radius : 20px;
    }
    </style>					
 					

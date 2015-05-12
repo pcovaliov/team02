@@ -9,8 +9,9 @@
        </layout>
     </appender>
   
-    <appender name="Appender2" class="org.apache.log4j.FileAppender">
+    <appender name="Appender2" class="org.apache.log4j.DailyRollingFileAppender">
        <param name="File" value="D:/TwitterLogs/logfile.log" />
+       <param name="DatePattern" value="'.'yyyy-MM-dd" />
        <layout class="org.apache.log4j.PatternLayout">
           <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n"/>
        </layout>

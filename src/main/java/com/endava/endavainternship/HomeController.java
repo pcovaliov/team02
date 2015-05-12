@@ -43,7 +43,9 @@ public class HomeController {
 	public String home(Locale locale, Model model, @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
 			   @RequestParam(value = "limit", required = false, defaultValue = "10") int limit
 			  ) {
-		//logger.info("Logging starts");
+		logger.info("Hello World!");
+		logger.error("Hello World!");
+		logger.debug("debug test");
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Collection tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
 		model.addAttribute("tweetObject", new Tweet() );

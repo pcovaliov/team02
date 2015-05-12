@@ -2,15 +2,20 @@ package com.endava.endavainternship.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.endava.endavainternship.UserController;
 import com.endava.endavainternship.dao.UserDAO;
 import com.endava.endavainternship.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -40,9 +45,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void removeUserByID(int userID) {
+		try{
 		User u = userDAO.findUserById(userID);
 		if(u != null){
 			userDAO.removeUser(u);
+		}
+		}
+		catch(Exception e){
+			logger.error("Cannot remove user by ID ");
+			
 		}
 		
 	}

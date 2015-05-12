@@ -1,6 +1,7 @@
 package com.endava.endavainternship;
 
 import java.util.Map;
+import java.util.logging.Level;
 
 import javax.validation.Valid;
 
@@ -11,13 +12,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.endava.endavainternship.entity.User;
 import com.endava.endavainternship.service.UserService;
@@ -55,16 +54,6 @@ public class UserController {
 		return "register";
 	}
 	
-//	@RequestMapping("/register1")
-//	public ModelAndView registerUser1(Map<String, Object> map) {
-//		System.out.println("------------------ " + logger.getClass() + " ------------------");
-//        ModelAndView template = new ModelAndView("template");
-//        template.addObject("data", "register");
-//		map.put("user", new User());
-//		map.put("userList", userService.listUser());
-//
-//		return template;
-//	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String addUser(@Valid @ModelAttribute("user") User user,
@@ -72,10 +61,11 @@ public class UserController {
 			Map<String, Object> map ) {
 		
 		if(result.hasErrors()){
-			System.out.println("error on user validation");
+			
+			logger.debug("user registration failed");
 			return "/login";			
 		}
-		System.out.println(user);
+		logger.info("Added user:" + user.getFirstname());
 		userService.addUser(user);
 		
 		Authentication auth = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());
@@ -88,7 +78,6 @@ public class UserController {
 	@RequestMapping(value="/delete-user/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable("id") int userID) {
 		userService.removeUserByID(userID);
-		System.out.println(userID);
 		return "redirect:/user";
 	}
 	
@@ -113,13 +102,14 @@ public class UserController {
 	@RequestMapping(value="/edit-user/{id}", method = RequestMethod.POST)
 	public String editUserAction(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Map<String, Object> map) {
 		if (bindingResult.hasErrors()){
-			System.out.println("2lalalalalalalal");
+			logger.error("An error has occured to update user ");
 			return "user";
 		}
 		if(userService.updateUser(user) == true){
 			return "redirect:/user";
 		} else {
-			map.put("errorMessage", "User not found in the db");
+			logger.error("User not found in the db");
+			//map.put("errorMessage", "User not found in the db");
 			return "/exception";
 		}
 	}

@@ -58,7 +58,7 @@
 
          <h1>Sign Up for Free</h1>
           
-          <form:form method="post" action="/endavainternship/register" commandName="user">
+          <form:form method="post" action="/endavainternship/register" commandName="user" enctype="multipart/form-data">
 	     <div class="top-row">
 	            <div class="field-wrap">
 	              <label>
@@ -84,6 +84,11 @@
 	            <form:input type="text" path="email"  autocomplete="off" />
 	              <form:errors path="email"  />
 	          </div>
+	          <div class="field-wrap">
+	          	Image:
+	          <input type="file" name="image">
+	          </div>
+	          
 	          <button type="submit" class="button button-block"/>Get Started</button>
           </form:form>
 

@@ -78,7 +78,10 @@
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered" style='float: none'>
-					<img src="resources/css/stanley/img/user.png" alt="Stanley">
+				<%-- <img src="resources/css/stanley/img/avt/${principal.imageName}" alt="Stanley" width="155" height="155" class="img-circle"> --%>
+					
+					<img src="<c:url value='/resources/css/stanley/img/avt/${principal.imageName}'/>" alt="Stanley" width="155" height="155" class="img-circle">
+
 					<h1> ${principal.firstname} ${principal.lastname}</h1>
 					<p>Hello everybody. I'm ${principal.firstname} ${principal.lastname} , you can follow me !</p>
 					

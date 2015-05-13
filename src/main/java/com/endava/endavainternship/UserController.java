@@ -1,5 +1,6 @@
 package com.endava.endavainternship;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.endava.endavainternship.entity.User;
 import com.endava.endavainternship.service.UserService;
@@ -44,7 +47,7 @@ public class UserController {
 		return "/user";
 	}
 	
-	@RequestMapping("/register")
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerUser(Map<String, Object> map) {
 		System.out.println("------------------ " + logger.getClass() + " ------------------");
 
@@ -55,16 +58,30 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String addUser(@Valid @ModelAttribute("user") User user,
-			BindingResult result,
+	@RequestMapping(value = "/register",  method = RequestMethod.POST)
+	public String addUser(@Valid @ModelAttribute("user") User user, 
+			@RequestParam MultipartFile image, BindingResult result,
 			Map<String, Object> map ) {
-		
+		System.out.println(user.getFirstname() + user.getLastname() + ".jpg");
+
 		if(result.hasErrors()){
 			
 			logger.debug("user registration failed");
 			return "/login";			
 		}
+		if (!image.isEmpty()) {
+
+				//userService.validateImage(image);
+				user.setImageName(user.getFirstname() + user.getLastname() + ".jpg");
+				try {
+					userService.saveImage(user.getImageName(),	image);
+				} catch (IOException e) {
+					result.reject(e.getMessage());
+					return "/login";
+				}
+			} else {
+				user.setImageName("user.png");
+			}
 		logger.info("Added user:" + user.getFirstname());
 		userService.addUser(user);
 		

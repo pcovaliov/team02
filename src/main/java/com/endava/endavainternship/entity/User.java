@@ -67,6 +67,9 @@ public class User extends org.springframework.security.core.userdetails.User
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.REMOVE)
 	private Collection<Tweet> tweets = new ArrayList<Tweet>();
 	
+	@Column(name="ImageName", columnDefinition="varchar(40) default 'user.png'")
+	private String imageName;
+	
 	public String getRole(){
 		return role;
 	}
@@ -109,6 +112,15 @@ public class User extends org.springframework.security.core.userdetails.User
 			authorities.add(new GrantedAuthorityImpl(this.role));
 			return authorities;
 		}
+		
+		 public String getImageName() {
+				return imageName;
+			}
+
+			public void setImageName(String imageName) {
+				this.imageName = imageName;
+			} 
+			
 
 	    public boolean isAccountNonExpired() { return true;}
 	    public boolean isAccountNonLocked() { return true; }

@@ -1,12 +1,16 @@
 package com.endava.endavainternship.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.endava.endavainternship.UserController;
 import com.endava.endavainternship.dao.UserDAO;
@@ -75,6 +79,33 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public User findUserByEmail(String email) {
 		return userDAO.findUserByEmail(email);
+	}
+	
+	@Override
+	public void validateImage(MultipartFile image) {
+		if ((!image.getContentType().equals("image/jpg")) || (!image.getContentType().equals("image/png")) ) {
+			throw new RuntimeException("Only JPG and PNG images are accepted");
+		}
+	}
+
+	@Override
+	public void saveImage(String filename, MultipartFile image)
+			throws RuntimeException, IOException {
+		try {
+			// File file = new File(servletContext.getRealPath("/") + "/"
+			// + filename);
+			// System.out.println(servletContext.getRealPath("/") + "/"
+			// + filename);
+			String filePath = "D:\\team02\\team02\\src\\main\\webapp\\resources\\css\\stanley\\img\\avt\\"; 
+			File file = new File(filePath + filename);
+			FileUtils.writeByteArrayToFile(file, image.getBytes());
+			System.out
+					.println("Go to the location:  "
+							+ file.toString()
+							+ " on your computer and verify that the image has been stored.");
+		} catch (IOException e) {
+			throw e;
+		}
 	}
 	
 	

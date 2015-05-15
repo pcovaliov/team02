@@ -24,6 +24,8 @@
 
     <!-- Custom styles for this template -->
     <link href="resources/css/stanley/css/main.css" rel="stylesheet">
+    <link href="resources/css/stanley/css/displayTweets.css" rel="stylesheet">
+    <link href="resources/css/stanley/css/iphone.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="resources/css/stanley/js/hover.zoom.js"></script>
@@ -140,44 +142,57 @@ margin-right: 5%;
  		</div>
  	</div>
  	</div>
- 	
- 	
- 	
-
-				
+ 			
 				</div><!-- /col-lg-8 -->
 				
-				<div>
-          
-          <div class="table-responsive">
-          <h2 align = "center" color = "red"> Tweets Timeline </h2>
-          
-            <table  id="tweet-table" class="table table-striped">
-              <thead>
-                <tr>
-                 
-                  <th>Tweet</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-	              <c:forEach items="${tweetList}" var="tweet">
-							<tr>
-								
-								<td>${tweet.getTweet()}</td>
-								<td><fmt:formatDate value="${tweet.getDate()}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							</tr>
+				
+				<!-- Display the tweets -->
+				
+				
+<br>
+<br>
+<br>
+  
+  <header class="top-bar">
+    
+    <div >   
+  <h1 align ="center">Tweets timeline</h1>
+    </div>
+    
+  </header>
+  
+  <ol class="discussion">
+       
+      <div class="messages">
+        
+    
+
+      <c:forEach items="${tweetList}" var="tweet">
+		
+		  <div class="from-me">								
+		    ${tweet.getTweet()}
+		    <br>
+		    
+			<span class="datedisplay">Posted : <fmt:formatDate value="${tweet.getDate()}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+			</div>
+					<br>
+					<br>
+					<br>
+					<br>	
 				  </c:forEach>
-				  
-				    <tr>
-				    	<td><a href="${prevTweetsLink}">Prev</a></td>
-					    <td><a href="${nextTweetsLink}">Next</a></td>
-					</tr>
-              </tbody>
-            </table>
-           
-        </div>
-       </div>
+				 
+				  </section>
+				   
+        
+      </div>
+    </li>
+    
+  </ol>
+  
+
+
+     
+    
 				
 			</div><!-- /row -->
 			
@@ -197,11 +212,12 @@ margin-right: 5%;
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
-					<h4>My Bunker</h4>
+					<h4>Central Office</h4>
 					<p>
-						Some Address 987,<br/>
-						+34 9054 5455, <br/>
-						USA, New York.
+						Sfatul Tarii 17,<br/>
+						+373 79815713, <br/>
+						+373 78930254, <br/>
+						Moldova, Chisinau.
 					</p>
 				</div><!-- /col-lg-4 -->
 				
@@ -216,7 +232,8 @@ margin-right: 5%;
 				
 				<div class="col-lg-4">
 					<h4>About ConnectER</h4>
-					<p> DEMO Version </p>
+					<p> CONNECTER is a DEMO application. It should have TWITTER functionality , and it was developed by ENDAVA Interns </p>
+					
 				</div><!-- /col-lg-4 -->
 			
 			</div>

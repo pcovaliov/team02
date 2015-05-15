@@ -1,9 +1,10 @@
 package com.endava.endavainternship.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +12,19 @@ import com.endava.endavainternship.entity.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserDAOImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
 	public void addUser(User user) {
+		
 		sessionFactory.getCurrentSession().save(user);
+		logger.info("User was saved " + user);
+		
+		
 
 	}
 
@@ -31,9 +38,13 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void removeUser(User user) {
-		if (null != user) {
+		
+			if (null != user) {
+		
 			sessionFactory.getCurrentSession().delete(user);
-		}
+
+			
+		} 
 
 	}
 
@@ -58,13 +69,18 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean updateUser(User user) {
-		User userFound = findUserByEmail(user.getEmail());
-		if (userFound == null || userFound.getId() == user.getId()) {
-			sessionFactory.getCurrentSession().merge(user);
-			return true;
-		} else {
-			return false;
-		}
-	}
 
+		User userFound = findUserByEmail(user.getEmail());
+	
+			if (userFound == null || userFound.getId() == user.getId()) {
+				sessionFactory.getCurrentSession().merge(user);
+
+				return true;
+			} else {
+				return false;
+
+			}
+		
+
+	}
 }

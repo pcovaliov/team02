@@ -40,7 +40,7 @@ public class HomeController {
 			   @RequestParam(value = "limit", required = false, defaultValue = "10") int limit
 			  ) {
 		
-		logger.debug("debug test");
+		logger.info("logging starts");
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Collection tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
 		model.addAttribute("tweetObject", new Tweet() );

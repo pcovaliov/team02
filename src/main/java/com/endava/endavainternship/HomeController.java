@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
@@ -45,16 +45,8 @@ public class HomeController {
 		Collection tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
 		model.addAttribute("tweetObject", new Tweet() );
 		model.addAttribute("tweetList", tweetList );
-		  
-		if(offset < tweetList.size()){
-			  String nextTweetsLink = ServletUriComponentsBuilder.fromCurrentContextPath().path("/?offset="+(offset+limit)).build().toUriString();
-			  model.addAttribute("nextTweetsLink", nextTweetsLink);
-			  }
-			  
-			  if(offset >= 10){
-			   String prevTweetsLink = ServletUriComponentsBuilder.fromCurrentContextPath().path("/?offset="+(offset-limit)).build().toUriString();
-			   model.addAttribute("prevTweetsLink", prevTweetsLink);
-			  }
+		
+		
 		
 		return "home";
 	}
@@ -64,6 +56,8 @@ public class HomeController {
 		if(bindingResult.hasErrors()){
 			return "home";	
 		}
+		
+		System.out.println("ololo"+insertedTweet.getTweet());
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		insertedTweet.setUser(currentUser);
@@ -73,5 +67,22 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+	@ResponseBody @RequestMapping(value = "/testing-tweet" , method = RequestMethod.POST)
+	public String addTweetJson(@Valid @ModelAttribute("tweetObject") Tweet insertedTweet, BindingResult bindingResult,Map<String, Object> map) {
+		
+		if(bindingResult.hasErrors()){
+			map.put("error", true);
+			return map.toString();	
+		}
+		
+		map.put("error", false);
+		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		insertedTweet.setUser(currentUser);
+		twitterService.addTweet(insertedTweet);
+		
+		map.put("tweetObject", insertedTweet);
+		
+		return map.toString();
+	}
 	
 }

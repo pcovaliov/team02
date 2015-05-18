@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
     <title>Home Page </title>
 
@@ -23,6 +22,7 @@
 
 
     <!-- Custom styles for this template -->
+    
     <link href="resources/css/stanley/css/main.css" rel="stylesheet">
     <link href="resources/css/stanley/css/displayTweets.css" rel="stylesheet">
     <link href="resources/css/stanley/css/iphone.css" rel="stylesheet">
@@ -31,32 +31,60 @@
     <script src="resources/css/stanley/js/hover.zoom.js"></script>
     <script src="resources/css/stanley/js/hover.zoom.conf.js"></script>
     <script src="resources/css/stanley/js/charCount.js"></script>
+  
+   
     
     <!-- Script for Characters Counter -->
+    
     <script type="text/javascript">
 	$(document).ready(function(){	
 		$("#message").charCount({
-			allowed: 147,		
+			allowed: 140,		
 			warning: 20,
 			counterText: 'Characters left : '	
 		});
 	});
 </script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+   
+<!-- Scrypt for pagination -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#postSubmit").submit(function(e){
+		e.preventDefault();
+		
+		var form = $("#postSubmit");
+	        e.preventDefault();
+	        jQuery.ajax({
+	            type: "POST",
+	            url: form.attr("action"), 
+	            data: form.serialize(), // serializes the form's elements.
+	            success: function(data) {
+	                console.log(data); // show response from the php script. (use the developer toolbar console, firefox firebug or chrome inspector console)
+	            }
+	        });
+		alert("form submitted");
+	});
+	
+});
+
+
+  
+</script>
+
   </head>
 
   <body>
+  
+
   <sec:authentication var="principal" property="principal" />
 
     <!-- Static navbar -->
+    
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
-        <div class="navbar-header">
+        <div class="container">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -76,7 +104,7 @@
     </div>
 
 	<!-- +++++ Welcome Section +++++ -->
-	<div id="ww">
+	<div>
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered" style='float: none'>
@@ -84,7 +112,7 @@
 					<h1> ${principal.firstname} ${principal.lastname}</h1>
 					<p>Hello everybody. I'm ${principal.firstname} ${principal.lastname} , you can follow me !</p>
 					
-					
+		<!-- Styles for text area  -->			
 					
 <style>
 .brd {
@@ -120,29 +148,30 @@ margin-right: 5%;
 }
 </style>
 
-<div class = "brd">
-<div>
-<h4 align = "left">Tweet Editor :</h4>
-        <div style='width="100%"'>
-          
-            <div class="form-group">
-              
-           
-                <form:form method="post"  commandName="tweetObject"> 
-                
-                 <form:textarea rows="5" cols="50" path="tweet" id = "message" cssClass="form-control" placeholder = "Tweet ..." />  
-                  <form:errors path="tweet" cssClass="error" />
-                  
-                  <br>
-                  <input type="submit" value="Tweet" />
-                  
-                </form:form>
-              
-            </div> 
- 		</div>
- 	</div>
- 	</div>
- 			
+					<div class="brd">
+						<div>
+							<h4 align="left">Tweet Editor :</h4>
+							<div style=''>
+
+								<div class="form-group">
+
+
+									<form:form method="post" id="postSubmit" action="testing-tweet"
+										commandName="tweetObject">
+
+										<form:textarea rows="5" cols="50" path="tweet" id="message"
+											cssClass="form-control" placeholder="Tweet ..." />
+										<form:errors path="tweet" cssClass="error" />
+
+										<br>
+										<input type="submit" value="Tweet" />
+									</form:form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div><!-- /col-lg-8 -->
 				
 				
@@ -153,8 +182,7 @@ margin-right: 5%;
 <br>
 <br>
   
-  <header class="top-bar">
-    
+  <header class="top-bar">   
     <div >   
   <h1 align ="center">Tweets timeline</h1>
     </div>
@@ -165,9 +193,7 @@ margin-right: 5%;
        
       <div class="messages">
         
-    
-
-      <c:forEach items="${tweetList}" var="tweet">
+      <c:forEach items="${tweetList}" var="tweet" >
 		
 		  <div class="from-me">								
 		    ${tweet.getTweet()}
@@ -180,20 +206,10 @@ margin-right: 5%;
 					<br>
 					<br>	
 				  </c:forEach>
-				 
-				  </section>
-				   
-        
       </div>
-    </li>
-    
-  </ol>
   
-
-
-     
     
-				
+  </ol>	
 			</div><!-- /row -->
 			
 			
@@ -201,7 +217,7 @@ margin-right: 5%;
 	</div><!-- /ww -->
 	
 	
-	<!-- +++++ Projects Section +++++ -->
+
 
 	
 	

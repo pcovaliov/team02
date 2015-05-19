@@ -20,12 +20,10 @@ public class TwitterDAOImp  implements TwitterDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Collection<Tweet> getTweetsForUser(User user, int limit, int offset) {
+	public Collection<Tweet> getTweetsForUser(User user) {
 		
 		Query q = sessionFactory.getCurrentSession().createQuery("from Tweet t where t.user = :user_id order by t.date DESC");
 		q.setInteger("user_id", user.getId());
-		q.setFirstResult(offset);
-		q.setMaxResults(limit);
 		return q.list();
 		
 		

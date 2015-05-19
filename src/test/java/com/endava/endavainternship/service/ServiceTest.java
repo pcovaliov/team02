@@ -113,8 +113,8 @@ public class ServiceTest {
 		  TwitterService twitterservice = (TwitterService) appContext
 		    .getBean("twitterService");
 
-		  List<Tweet> listOfTweet = (List<Tweet>) twitterservice.getTweetsForUser(user, 10, 0);
-          System.out.println(twitterservice.getTweetsForUser(user, 10, 0));
+		  List<Tweet> listOfTweet = (List<Tweet>) twitterservice.getTweetsForUser(user);
+          System.out.println(twitterservice.getTweetsForUser(user));
 		  assertTrue(listOfTweet.size() == sizeTweetList);
 
 		 }

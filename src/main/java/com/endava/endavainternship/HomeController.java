@@ -1,6 +1,9 @@
 package com.endava.endavainternship;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -42,9 +45,31 @@ public class HomeController {
 		
 		logger.info("logging starts");
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
+		Collection<Tweet> tweetList = twitterService.getTweetsForUser(currentUser);
 		model.addAttribute("tweetObject", new Tweet() );
 		model.addAttribute("tweetList", tweetList );
+		
+		//
+		int tweetNumber = tweetList.size();
+		int pageNumber = (int)Math.ceil(tweetNumber/3.0);
+		Map <Integer,List<Tweet>> tweets = new HashMap <Integer,List<Tweet>>();
+		
+		List l = new ArrayList<Tweet>();
+		
+		int pageLimit = 3;
+		int currentPage = 1;
+		
+		for(Tweet t : tweetList){
+			if(l.size() == pageLimit){
+				tweets.put(currentPage, l);
+				l = new ArrayList<Tweet>();
+				currentPage++;
+			}
+			l.add(t);
+		}
+		tweets.put(currentPage, l);
+		model.addAttribute("tweetContainer", tweets );
+		System.out.println("tweets : "+tweets);
 		
 		
 		

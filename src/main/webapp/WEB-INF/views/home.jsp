@@ -81,7 +81,12 @@
 </script>
 
 
-<!-- Scrypt for pagination -->
+<style>
+.bird{
+width:180px;
+}
+
+</style>
 
 </head>
 
@@ -258,16 +263,14 @@ form .exceeded {
 					<p>
 						Sfatul Tarii 17,<br /> +373 79815713, <br /> +373 78930254, <br />
 						Moldova, Chisinau.
+						
 					</p>
 				</div>
 				<!-- /col-lg-4 -->
 
 				<div class="col-lg-4">
-					<h4>My Links</h4>
-					<p>
-						<a href="#">Dribbble</a><br /> <a href="#">Twitter</a><br /> <a
-							href="#">Facebook</a>
-					</p>
+					<img src="resources/css/stanley/img/bird.png"  class ="bird">
+					
 				</div>
 				<!-- /col-lg-4 -->
 

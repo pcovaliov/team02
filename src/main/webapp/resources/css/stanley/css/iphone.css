@@ -13,9 +13,13 @@ section {
 
 .datedisplay{
 
-	font-size:16px;
-	color:#FFE114;
+	font-size:14px;
+	color:#FFFC00;
 	align:left;
+	margin-left: 255px;
+	border: 2px white solid;
+	padding: 2px;
+	border-radius:20px;
 }
 .clear {clear: both}
 .from-me {

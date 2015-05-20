@@ -81,6 +81,7 @@
 </script>
 
 
+
 <style>
 .bird{
 width:180px;
@@ -121,102 +122,37 @@ width:180px;
 <br>
 <br>
 <br>
+<div class="container">
 	<!-- +++++ Welcome Section +++++ -->
-	<div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 centered" style='float: none'>
-					<img src="resources/css/stanley/img/user.png" alt="Stanley">
+	<div class="row">
+		<div class="col-md-6 centered">
+		<h1 align="center">User Profile</h1>
+			 <img src="resources/css/stanley/img/user.png" alt="Stanley">
 					<h1>${principal.firstname} ${principal.lastname}</h1>
 					<p>Hello everybody. I'm ${principal.firstname}
 						${principal.lastname} , you can follow me !</p>
 
-					<!-- Styles for text area  -->
+				<div class="tweet-form">
+					<div>
+						<h4 align="left">Tweet Editor :</h4>
+						<div class="form-group">
+							<form:form method="post" id="postSubmit"
+								commandName="tweetObject">
 
-					<style>
-.brd {
-	border: 4px solid #1abc9c;
-	padding: 10px;
-	border-radius: 20px;
-}
-</style>
+								<form:textarea rows="6" cols="80" path="tweet" id="message"
+									cssClass="form-control" placeholder="Tweet ..." />
+								<form:errors path="tweet" cssClass="error" />
 
-					<style>
-textarea {
-	align: center;
-}
-
-label {
-	display: block;
-	font-size: 14px;
-}
-
-form .counter {
-	position: absolute;
-	right: 0;
-	top: 0;
-	font-size: 20px;
-	font-weight: bold;
-	color: #600;
-}
-
-form .warning {
-	color: #e00;
-}
-
-form .exceeded {
-	color: #e00;
-}
-
-.counter {
-	margin-top: 325px;
-	margin-right: 5%;
-}
-</style>
-
-					<div class="brd">
-						<div>
-							<h4 align="left">Tweet Editor :</h4>
-							<div style=''>
-
-								<div class="form-group">
-
-
-									<form:form method="post" id="postSubmit"
-										commandName="tweetObject">
-
-										<form:textarea rows="5" cols="50" path="tweet" id="message"
-											cssClass="form-control" placeholder="Tweet ..." />
-										<form:errors path="tweet" cssClass="error" />
-
-										<br>
-										<input type="submit" value="Tweet" />
-									</form:form>
-
-								</div>
-							</div>
+								<br>
+								<input type="submit" value="Tweet" />
+							</form:form>
 						</div>
 					</div>
-
 				</div>
-				<!-- /col-lg-8 -->
-
-
-				<!-- Display the tweets -->
-
-
-				<br> <br> <br>
-
-				<header class="top-bar">
-					<div>
-						<h1 align="center">Tweets timeline</h1>
-					</div>
-
-				</header>
-
-
+		</div>
+        <div class="col-md-6">
+          <h1 align="center">Tweets timeline</h1>
 				<ol class="discussion">
-
 					<div id="paginationdemo" class="demo">
 						<c:forEach items="${tweetContainer}" var="item">
 							<div id="p${item.key}" class="pagedemo <c:if test="${item.key == 1}">_current</c:if>" <c:if test="${item.key != 1}">style="display:none;"</c:if>>
@@ -234,24 +170,56 @@ form .exceeded {
 						</c:forEach>
 					</div>
 					<div class="messages">
-
-						
 					</div>
 				<div id="demo3">
-</div>
+				</div>
+				
 				</ol>
-
-
-
-
-
-			<!-- /row -->
-
-
 		</div>
-		<!-- /container -->
-	</div>
-	<!-- /ww -->
+        
+    </div>
+					
+					<!-- Styles for text area  -->
+<style>
+textarea {
+	align: center;
+	width:50%;
+}
+
+label {
+	display: block;
+	font-size: 14px;
+}
+
+form .counter {
+    width:100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 20px;
+	font-weight: bold;
+	color: #600;
+}
+
+form .warning {
+	color: #e00;
+}
+
+form .exceeded {
+	color: #e00;
+}
+
+.counter {
+	margin-top: 400px;
+	margin-right: -170px;
+}
+
+
+</style>
+
+
+</div>
+<!-- /container -->
 
 	<!-- +++++ Footer Section +++++ -->
 

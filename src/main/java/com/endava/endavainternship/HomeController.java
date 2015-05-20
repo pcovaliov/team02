@@ -51,12 +51,12 @@ public class HomeController {
 		
 		//
 		int tweetNumber = tweetList.size();
-		int pageNumber = (int)Math.ceil(tweetNumber/3.0);
+		int pageNumber = (int)Math.ceil(tweetNumber/15.0);
 		Map <Integer,List<Tweet>> tweets = new HashMap <Integer,List<Tweet>>();
 		
 		List l = new ArrayList<Tweet>();
 		
-		int pageLimit = 3;
+		int pageLimit = 15;
 		int currentPage = 1;
 		
 		for(Tweet t : tweetList){

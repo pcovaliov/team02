@@ -1,9 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ page session="false" import="java.io.File"%>
+<%@ page session="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +121,7 @@ width:180px;
 			</div>
 			<!--/.nav-collapse -->
 		</div>
-	
+	</div>
 <br>
 <br>
 <br>
@@ -128,9 +129,8 @@ width:180px;
 	<!-- +++++ Welcome Section +++++ -->
 	<div class="row">
 		<div class="col-md-6 centered">
-									
-					<img src="/images/${principal.imageName}" alt="Stanley" width="155" height="155" class="img-circle">
-
+		<h1 align="center">User Profile</h1>
+			 <img src="/images/${principal.imageName}" alt="Stanley" width="155" height="155" class="img-circle">
 					<h1>${principal.firstname} ${principal.lastname}</h1>
 					<p>Hello everybody. I'm ${principal.firstname}
 						${principal.lastname} , you can follow me !</p>

@@ -75,7 +75,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/delete-user/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/delete-user/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable("id") int userID) {
 		userService.removeUserByID(userID);
 		return "redirect:/user";
@@ -84,7 +84,7 @@ public class UserController {
 	
 	
 	
-	@RequestMapping(value="/edit-user/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/edit-user/{id}", method = RequestMethod.GET)
 	public String editUser(Map<String, Object> map ,@PathVariable("id") int id) {
 		User u = userService.findUserById(id);
 		if(u != null){
@@ -99,7 +99,7 @@ public class UserController {
 	
 	
 	
-	@RequestMapping(value="/edit-user/{id}", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/edit-user/{id}", method = RequestMethod.POST)
 	public String editUserAction(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Map<String, Object> map) {
 		if (bindingResult.hasErrors()){
 			logger.error("An error has occured to update user ");
@@ -114,13 +114,6 @@ public class UserController {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }

@@ -69,6 +69,7 @@ public class HomeController {
 		}
 		tweets.put(currentPage, l);
 		model.addAttribute("tweetContainer", tweets );
+		model.addAttribute("pageNumber", pageNumber );
 		System.out.println("tweets : "+tweets);
 		
 		

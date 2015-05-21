@@ -9,6 +9,8 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 	<intercept-url pattern="/tweet-page" access="isAuthenticated()" />
 	<intercept-url pattern="/login" access="permitAll" />
+	
+
 	<intercept-url pattern="/register" access="permitAll" />
 	<intercept-url pattern="/resources/**" access="permitAll" />
 	<intercept-url pattern="/**" access="isAuthenticated()" />

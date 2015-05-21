@@ -36,7 +36,6 @@ public class SeleniumTest {
     driver.findElement(By.id("lastname")).sendKeys("testasd");
     driver.findElement(By.id("email")).clear();
     driver.findElement(By.id("email")).sendKeys("testasd@testasd.com");
-    driver.findElement(By.name("image")).clear();
     driver.findElement(By.name("image")).sendKeys("C:\\Users\\alevitchi\\Desktop\\IMG_6735-155x155.jpg");
     driver.findElement(By.cssSelector("button.button.button-block")).click();
     driver.findElement(By.linkText("USERS")).click();

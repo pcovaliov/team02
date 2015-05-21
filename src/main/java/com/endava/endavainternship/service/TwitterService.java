@@ -8,6 +8,6 @@ import com.endava.endavainternship.entity.User;
 
 public interface TwitterService {
 
-	public Collection<Tweet> getTweetsForUser(User user,int limit, int offset);
+	public Collection<Tweet> getTweetsForUser(User user);
 	public Tweet addTweet(Tweet tweet);
 }

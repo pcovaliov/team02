@@ -1,0 +1,48 @@
+
+
+.module {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.top-bar {
+  background: #fff;
+  color: white;
+  padding: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  h1 {
+    display: inline;
+    font-size: 30px;
+  }
+ 
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+    padding-top: 5px;
+  }
+  > * {
+    position: relative; 
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    opacity: 0.25;
+    background: radial-gradient(white, black);
+    animation: pulse 1s ease alternate infinite;
+  }
+}
+
+.discussion {
+  
+  list-style: none;
+  background: #FFFFFF;
+  padding: 30px 20px 50px 30px; // finality
+}
+ 

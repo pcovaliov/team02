@@ -37,24 +37,44 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public List<User> listUser() {
 		
+		try{
+			
+		logger.info("User saved to database");
 		return userDAO.listUser();
+		
+		}
+		catch(Exception e){
+			logger.error("ERROR : Can not save user to database");
+			return null;
+		}
+		
 	}
 
 	@Override
 	@Transactional
 	public void removeUser(User user) {
-		
-		userDAO.removeUser(user);
+		try{
+			logger.info("User deleted " + user);
+		    userDAO.removeUser(user);	
+	}
+		catch (Exception e){
+			
+			logger.error("ERROR : Can not delete user" + user);
+			
+		}
 		
 	}
 
 	@Override
 	@Transactional
 	public void removeUserByID(int userID) {
+		
 		try{
 		User u = userDAO.findUserById(userID);
 		if(u != null){
+			logger.info("User deleted " + u);
 			userDAO.removeUser(u);
+			
 		}
 		}
 		catch(Exception e){
@@ -74,7 +94,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public boolean updateUser(User user) {
+		try{
+			logger.info("User was updated : " + user);
 		return userDAO.updateUser(user);
+		}
+		catch(Exception e){
+			logger.error("ERROR : Updating user " + user);
+			return false;
+		}
 	}
 
 	@Override

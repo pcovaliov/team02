@@ -1,6 +1,8 @@
 package com.endava.endavainternship.service;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -91,12 +93,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveImage(String filename, MultipartFile image)
 			throws RuntimeException, IOException {
+		
 		try {
-			// File file = new File(servletContext.getRealPath("/") + "/"
-			// + filename);
-			// System.out.println(servletContext.getRealPath("/") + "/"
-			// + filename);
-			String filePath = "D:\\team02\\team02\\src\\main\\webapp\\resources\\css\\stanley\\img\\avt\\"; 
+			      
+			String filePath = System.getProperty("catalina.home") + File.separator + "webapps" + File.separator +"ROOT"+ File.separator +"images" + File.separator;
+			System.out.println("FILE:"+filePath);
 			File file = new File(filePath + filename);
 			FileUtils.writeByteArrayToFile(file, image.getBytes());
 			System.out
@@ -105,9 +106,6 @@ public class UserServiceImpl implements UserService {
 							+ " on your computer and verify that the image has been stored.");
 		} catch (IOException e) {
 			throw e;
-		}
+		}	
 	}
-	
-	
-
 }

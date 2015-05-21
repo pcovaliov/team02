@@ -1,5 +1,6 @@
 package com.endava.endavainternship;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.endava.endavainternship.entity.User;
 import com.endava.endavainternship.service.UserService;
+//import com.endava.endavainternship.service.AvatarService;
+
 
 
 @Controller
@@ -34,6 +37,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	//@Autowired
+	//private AvatarService avatarService;
 	
 	
 	@RequestMapping("/user")
@@ -60,7 +65,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/register",  method = RequestMethod.POST)
 	public String addUser(@Valid @ModelAttribute("user") User user, 
-			@RequestParam MultipartFile image, BindingResult result,
+			@RequestParam("image") MultipartFile image, BindingResult result,
 			Map<String, Object> map ) {
 		System.out.println(user.getFirstname() + user.getLastname() + ".jpg");
 
@@ -69,7 +74,18 @@ public class UserController {
 			logger.debug("user registration failed");
 			return "/login";			
 		}
+		/*System.out.println("getting image");
 		if (!image.isEmpty()) {
+			if(avatarService.validateImage(image)){
+				String uploadedFilePath = avatarService.saveImage(image);
+				user.setImageName(uploadedFilePath);
+			} else {
+				System.out.println("not valid image");
+			}
+		} */
+		
+		if (!image.isEmpty()) {
+		
 
 				//userService.validateImage(image);
 				user.setImageName(user.getFirstname() + user.getLastname() + ".jpg");
@@ -87,7 +103,7 @@ public class UserController {
 		
 		Authentication auth = new UsernamePasswordAuthenticationToken(user,null, user.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
-
+		map.put("filePath", System.getProperty("catalina.home") + File.separator + "images" + File.separator);
 		return "redirect:/";
 	}
 	

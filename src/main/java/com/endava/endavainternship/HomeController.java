@@ -45,7 +45,7 @@ public class HomeController {
 		
 		logger.info("logging starts");
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection<Tweet> tweetList = twitterService.getTweetsForUser(currentUser);
+		Collection<Tweet> tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
 		model.addAttribute("tweetObject", new Tweet() );
 		model.addAttribute("tweetList", tweetList );
 		

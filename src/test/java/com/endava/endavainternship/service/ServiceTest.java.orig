@@ -19,7 +19,6 @@ import com.endava.endavainternship.configuration.Registry;
 import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
 import com.endava.endavainternship.service.UserService;
-import com.endava.endavainternship.service.TwitterService;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -155,9 +154,77 @@ public class ServiceTest {
 
 		userService.removeUserByID(testUser.getId());
 		
+<<<<<<< HEAD
 		assertNotNull(user);
 
 	}
+=======
+	 @Test
+	 @Transactional
+	 public void DUpdateUser() {
+
+	  UserService service = (UserService) appContext.getBean("userService");
+	  User user = service.findUserById(testUsers.get(0).getId());
+
+	  String newLastName = user.getLastname() + "EDIT";
+	  String newFirstName = user.getFirstname() + "Edit";
+
+	  user.setLastname(newLastName);
+	  user.setFirstname(newFirstName);
+	  service.updateUser(user);
+	  assertEquals(user.getLastname(), newLastName);
+	 }
+	 
+	 
+	 @Test
+	 @Transactional
+	 public void EInsertTweet(){
+	 UserService service = (UserService) appContext.getBean("userService");
+	//  User user = service.findUserById(4);
+      User user = service.findUserById(testUsers.get(0).getId());
+	  TwitterService twitterservice = (TwitterService) appContext.getBean("twitterService");
+	  Tweet tweet = new Tweet();
+	  
+	  tweet.setUser(user);
+	  for (int i = 0; i < 10; i++) {
+		   tweet.setTweet("TEST Tweet " + i);
+		   twitterservice.addTweet(tweet);
+		   testTweet.add(tweet);
+		   // for checking number of tweets inserted
+		   sizeTweetList++;
+	  }
+	  assertTrue(tweet.getId() != null);
+	 }
+	 
+	 @Test
+	 @Transactional
+	 public void FGetListOfTweets() {
+		  UserService service = (UserService) appContext.getBean("userService");
+		  User user = service.findUserById(testUsers.get(0).getId());
+
+		  TwitterService twitterservice = (TwitterService) appContext
+		    .getBean("twitterService");
+
+		  List<Tweet> listOfTweet = (List<Tweet>) twitterservice.getTweetsForUser(user);
+          System.out.println(twitterservice.getTweetsForUser(user));
+		  assertTrue(listOfTweet.size() == sizeTweetList);
+
+		 }
+	 
+	 
+	 @Test
+	 @Transactional
+	 public void GDeleteUser(){
+		 
+		 UserService service = (UserService) appContext.getBean("userService");
+		 User user = service.findUserById(testUsers.get(0).getId());
+		 System.out.println(user.getId());
+		 service.removeUser(user);
+		 System.out.println(user.getId());
+		 assertNotNull(user);
+		 
+	 }
+>>>>>>> origin/PaginationTASK
 	
 }
 

@@ -40,10 +40,13 @@
 
 <script type="text/javascript">
 	$(function() {
-
-		$("#demo3").paginate(
+		var pageNumber = ${pageNumber};
+		if(pageNumber == 0)
+		{$('.discussion').html('post a tweet buddy')}
+		else
+			$("#demo3").paginate(
 				{
-					count : 20,
+					count : pageNumber,
 					start : 1,
 					display : 10,
 					border : true,

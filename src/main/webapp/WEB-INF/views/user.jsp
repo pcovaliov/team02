@@ -15,13 +15,7 @@
 
     <title>Home Page </title>
     
-    <script>
-  head(function() {
-    $('div#eg-edit-in-popup').editable({
-      editInPopup: true
-    })
-  });
-</script>
+   
 
     <!-- Bootstrap core CSS -->
     
@@ -39,7 +33,7 @@
 
   <body>
   <sec:authentication var="principal" property="principal" />
-
+  ${principal.role} 
     <!-- Static navbar -->
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">
@@ -75,7 +69,10 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
-					<th>Manage User</th>
+					<c:if test="${principal.role == 'ROLE_ADMIN'}">
+						<th>Manage User</th>
+					</c:if>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -86,11 +83,14 @@
 						<td>${user.getFirstname()}</td>
 						<td>${user.getLastname()}</td>
 						<td>${user.getEmail()}</td>
-						<td>
-								<a href="/endavainternship/delete-user/${user.getId()}">delete</a> /
+									<c:if test="${principal.role == 'ROLE_ADMIN'}">
+							<td>
+								<a href="/endavainternship/admin/delete-user/${user.getId()}" >delete</a> /
 									
-								<a href="/endavainternship/edit-user/${user.getId()}">edit</a>
+								<a href="/endavainternship/admin/edit-user/${user.getId()}">edit</a>
 							</td>
+					</c:if>
+						
 					</tr>
 				</c:forEach>
 			</tbody>

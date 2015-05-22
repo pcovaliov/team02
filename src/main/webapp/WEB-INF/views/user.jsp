@@ -22,12 +22,50 @@
     <link rel="stylesheet" type="text/css" href="resources/css/stanley/css/bootstrap.css"/>
 
 
-    <!-- Custom styles for this template -->
+         <!-- Custom styles for this template -->
     <link href="resources/css/stanley/css/main.css" rel="stylesheet">
+    
+          <!-- Custom styles for pagination -->
+    <link href="resources/css/stanley/css/paginate.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="resources/css/stanley/js/hover.zoom.js"></script>
     <script src="resources/css/stanley/hover.zoom.conf.js"></script>
+    <script src="resources/css/stanley/js/jquery.paginate.js"></script>
+    
+    
+    <!-- Script for display user -->
+    
+    <script type="text/javascript">
+	$(function() {
+		var pageNumber = ${pageNumber};
+		if(pageNumber == 0)
+		{$('.discussion').html('post a tweet buddy')}
+		else
+			$("#demo3").paginate(
+				{
+					count : pageNumber,
+					start : 1,
+					display : 10,
+					border : true,
+					border_color : '#BEF8B8',
+					text_color : '#fff',
+					background_color : '#0B93F6',
+					border_hover_color : '#68BA64',
+					text_hover_color : 'black',
+					background_hover_color : '#fff',
+					rotate : false,
+					images : false,
+					mouse : 'press',
+					onChange : function(page) {
+						$('._current', '#paginationdemo').removeClass(
+								'_current').hide();
+						$('#p' + page).addClass('_current').show();
+					}
+				});
+
+	});
+</script>
 
   </head>
 
@@ -56,7 +94,44 @@
       </div>
     </div>
     
+   <div class="row" style ="margin-left: 140px;">
+       <div class="col-md-10 col-md-offset-1 centered" id="paginationdemo">
+	      <c:forEach items="${userContainer}" var="item">
+	          <div id="p${item.key}" class="pagedemo <c:if test="${item.key == 1}">_current</c:if>" <c:if test="${item.key != 1}">style="display:none;"</c:if>>
+	              <c:forEach items="${item.value}" var="user">
+	                 <div class="userDisplay">
+	                   <p class="userNameDisplay"> ${user.getFirstname()}  ${user.getLastname()}</p>
+	                     <br>
+	                     <br>
+	                     <img src="/images/${user.getImageName() }" alt="Stanley" width="155" height="155" class="userDisplayList">
+	                    
+	              
+	          
+	          
+	                  </div>
+	               </c:forEach>
+	           </div>
+	       </c:forEach>
+      </div> <!-- closing col-md-2 col-md-offset-1 div -->
+    </div> <!-- closing row div -->
+    
+    <br>
+    <br>
+    <br>
+    
+ 
+  
+  
+  
    
+    
+    <div class="row">
+    <div class="col-md-2 col-md-offset-5"> <div id="demo3"></div></div>
+</div>
+
+
+
+				
     
     <br>
     <br>

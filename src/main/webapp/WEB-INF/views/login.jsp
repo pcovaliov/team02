@@ -85,7 +85,7 @@
 	              <form:errors path="email"  />
 	          </div>
 	          <div class="field-wrap">
-	          	Image:
+	          	
 	          <input type="file" name="image">
 	          </div>
 	          

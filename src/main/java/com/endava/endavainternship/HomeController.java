@@ -45,18 +45,18 @@ public class HomeController {
 		
 		logger.info("logging starts");
 		User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection<Tweet> tweetList = twitterService.getTweetsForUser(currentUser, limit, offset);
+		Collection<Tweet> tweetList = twitterService.getTweetsForUser(currentUser);
 		model.addAttribute("tweetObject", new Tweet() );
 		model.addAttribute("tweetList", tweetList );
 		
 		//
 		int tweetNumber = tweetList.size();
-		int pageNumber = (int)Math.ceil(tweetNumber/15.0);
+		int pageNumber = (int)Math.ceil(tweetNumber/25.0);
 		Map <Integer,List<Tweet>> tweets = new HashMap <Integer,List<Tweet>>();
 		
 		List l = new ArrayList<Tweet>();
 		
-		int pageLimit = 15;
+		int pageLimit = 25;
 		int currentPage = 1;
 		
 		for(Tweet t : tweetList){

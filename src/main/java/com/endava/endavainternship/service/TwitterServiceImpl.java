@@ -17,11 +17,11 @@ public class TwitterServiceImpl implements TwitterService {
 	private TwitterDAO twitterDAO;
 
 	@Override
-	public Collection<Tweet> getTweetsForUser(User user,int limit , int offset) {
+	public Collection<Tweet> getTweetsForUser(User user) {
 		
 		if(user == null)
 			return null;
-		return twitterDAO.getTweetsForUser(user,limit,offset );
+		return twitterDAO.getTweetsForUser(user);
 		
 	}
 

@@ -130,7 +130,7 @@ width:180px;
 	<div class="row">
 		<div class="col-md-6 centered">
 		<h1 align="center">User Profile</h1>
-			 <img src="/images/${principal.imageName}" alt="Stanley" width="155" height="155" class="img-circle">
+			 <img src="/images/${principal.imageName}" alt="Stanley" width="250" height="250" class="avatar">
 					<h1>${principal.firstname} ${principal.lastname}</h1>
 					<p>Hello everybody. I'm ${principal.firstname}
 						${principal.lastname} , you can follow me !</p>
@@ -213,7 +213,7 @@ form .exceeded {
 }
 
 .counter {
-	margin-top: 400px;
+	margin-top: 495px;
 	margin-right: -170px;
 }
 

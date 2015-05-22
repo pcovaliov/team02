@@ -2,8 +2,11 @@ package com.endava.endavainternship;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 import javax.validation.Valid;
 
@@ -14,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,24 +45,43 @@ public class UserController {
 	//private AvatarService avatarService;
 	
 	
-	@RequestMapping("/user")
-	public String listUser(Map<String, Object> map) {
-		System.out.println("------------------ " + logger.getClass() + " ------------------");
-
-		map.put("userList", userService.listUser());
+	@RequestMapping(value = "/user" , method = RequestMethod.GET)
+	public String listUser(Model model) {
 		
-		System.out.println(userService.listUser().size());
-
+		Collection<User> userList = userService.listUser();
+			
+		model.addAttribute("userList", userList);
+		
+		int userNumber = userList.size();
+		int pageNumber = (int)Math.ceil(userNumber/10.0);
+		Map <Integer,List<User>> users = new HashMap <Integer,List<User>>();
+		List l = new ArrayList<User>();
+		
+		int pageLimit = 10;
+		int currentPage = 1;
+		
+		
+		for(User u : userList){
+			if(l.size() == pageLimit){
+				users.put(currentPage, l);
+				l=new ArrayList<User>();
+				currentPage++;
+			}
+			l.add(u);
+		}
+		users.put(currentPage, l);
+		
+		model.addAttribute("userContainer",users);
+		model.addAttribute("pageNumber", pageNumber );
+		
 		return "/user";
+		
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerUser(Map<String, Object> map) {
 		System.out.println("------------------ " + logger.getClass() + " ------------------");
-
 		map.put("user", new User());
-//		map.put("userList", userService.listUser());
-
 		return "register";
 	}
 	
@@ -74,19 +97,7 @@ public class UserController {
 			logger.debug("user registration failed");
 			return "/login";			
 		}
-		/*System.out.println("getting image");
 		if (!image.isEmpty()) {
-			if(avatarService.validateImage(image)){
-				String uploadedFilePath = avatarService.saveImage(image);
-				user.setImageName(uploadedFilePath);
-			} else {
-				System.out.println("not valid image");
-			}
-		} */
-		
-		if (!image.isEmpty()) {
-		
-
 				//userService.validateImage(image);
 				user.setImageName(user.getFirstname() + user.getLastname() + ".jpg");
 				try {

@@ -143,7 +143,7 @@ public class ServiceTest {
 		}
 		
 		
-		List<Tweet> listOfTweets = (List<Tweet>) twitterService.getTweetsForUser(testUser, insertedTweets, 0);
+		List<Tweet> listOfTweets = (List<Tweet>) twitterService.getTweetsForUser(testUser);
 		assertTrue(listOfTweets.size() == insertedTweets);
 	}
 	

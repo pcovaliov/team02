@@ -26,7 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
+import com.endava.endavainternship.service.TwitterService;
 import com.endava.endavainternship.service.UserService;
 //import com.endava.endavainternship.service.AvatarService;
 
@@ -41,6 +43,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private TwitterService twitterService;
+	
 	//@Autowired
 	//private AvatarService avatarService;
 	
@@ -156,6 +161,46 @@ public class UserController {
 			//map.put("errorMessage", "User not found in the db");
 			return "/exception";
 		}
+	}
+	
+	@RequestMapping(value = "/home/{id}", method = RequestMethod.GET)
+	public String externalTweetsPage(
+			Map<String, Object> map, 
+			@PathVariable("id") int id, Model model
+		) {
+		
+		User user = userService.findUserById(id);
+		if(user == null){ //the id is not present in the db
+			return "exception";
+		}
+		
+		
+		Collection<Tweet> tweetList = twitterService.getTweetsForUser(user);
+		
+		//
+		int tweetNumber = tweetList.size();
+		int pageNumber = (int)Math.ceil(tweetNumber/25.0);
+		Map <Integer,List<Tweet>> tweets = new HashMap <Integer,List<Tweet>>();
+		
+		List l = new ArrayList<Tweet>();
+		
+		int pageLimit = 25;
+		int currentPage = 1;
+		
+		for(Tweet t : tweetList){
+			if(l.size() == pageLimit){
+				tweets.put(currentPage, l);
+				l = new ArrayList<Tweet>();
+				currentPage++;
+			}
+			l.add(t);
+		}
+		tweets.put(currentPage, l);
+		model.addAttribute("tweetContainer", tweets );
+		model.addAttribute("pageNumber", pageNumber );
+		model.addAttribute("currentUser", user );
+		    
+		return "/external-tweet-page";
 	}
 	
 

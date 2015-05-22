@@ -101,13 +101,14 @@
 	              <c:forEach items="${item.value}" var="user">
 	                 <div class="userDisplay">
 	                   <p class="userNameDisplay"> ${user.getFirstname()}  ${user.getLastname()}</p>
+	                   <p class="userEmailDisplay">${user.getEmail()}</p>
 	                     <br>
 	                     <br>
 	                     <img src="/images/${user.getImageName() }" alt="Stanley" width="155" height="155" class="userDisplayList">
-	                    
-	              
-	          
-	          
+	                        <c:if test="${principal.role == 'ROLE_ADMIN'}">
+	                     <a href="/endavainternship/admin/delete-user/${user.getId()}" >delete</a> /
+						 <a href="/endavainternship/admin/edit-user/${user.getId()}">edit</a>
+						    </c:if>
 	                  </div>
 	               </c:forEach>
 	           </div>
@@ -120,18 +121,11 @@
     <br>
     
  
-  
-  
-  
-   
-    
     <div class="row">
     <div class="col-md-2 col-md-offset-5"> <div id="demo3"></div></div>
 </div>
 
-
-
-				
+			
     
     <br>
     <br>

@@ -45,7 +45,7 @@
 		if(pageNumber == 0)
 		{$('.discussion').html('post a tweet buddy')}
 		else
-			$("#demo3").paginate(
+			$("#pagination").paginate(
 				{
 					count : pageNumber,
 					start : 1,
@@ -174,8 +174,8 @@ width:180px;
 					</div>
 					<div class="messages">
 					</div>
-				<div id="demo3">
-				</div>
+				<div id="pagination"></div>
+				
 				
 				</ol>
 		</div>

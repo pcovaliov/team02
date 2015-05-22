@@ -115,57 +115,16 @@
 	       </c:forEach>
       </div> <!-- closing col-md-2 col-md-offset-1 div -->
     </div> <!-- closing row div -->
+    <br>
+    <br>
+    <br>
+    <br>
     
-    <br>
-    <br>
-    <br>
-    
- 
-    <div class="row">
-    <div class="col-md-2 col-md-offset-5"> <div id="demo3"></div></div>
-</div>
 
-			
-    
-    <br>
-    <br>
-    <br>
-    <div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-					<c:if test="${principal.role == 'ROLE_ADMIN'}">
-						<th>Manage User</th>
-					</c:if>
-					
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach items="${userList}" var="user">
-					<tr>
-						<td>${user.getId()}</td>
-						<td>${user.getFirstname()}</td>
-						<td>${user.getLastname()}</td>
-						<td>${user.getEmail()}</td>
-									<c:if test="${principal.role == 'ROLE_ADMIN'}">
-							<td>
-								<a href="/endavainternship/admin/delete-user/${user.getId()}" >delete</a> /
-									
-								<a href="/endavainternship/admin/edit-user/${user.getId()}">edit</a>
-							</td>
-					</c:if>
-						
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-
-
+<div class="col-md-10 col-md-offset-1 "><div class="row">
+       <div class="col-md-2 col-md-offset-5"> <div id="demo3"></div>
+    </div>
+</div></div>
+   
 </body>
 </html>

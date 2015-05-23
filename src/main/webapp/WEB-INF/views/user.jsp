@@ -117,11 +117,19 @@
       </div> <!-- closing col-md-2 col-md-offset-1 div -->
     </div> <!-- closing row div -->
     <br>
+    <br>
+	<br>
+	<br>
+						
     
-<div class="col-md-10 col-md-offset-1 "><div class="row">
-       <div class="col-md-2 col-md-offset-5"> <div id="demo3"></div>
-    </div>
-</div></div>
+  <div class="col-md-10 col-md-offset-1 " style = "margin-left: -20px;">
+      <div class="row">
+           <div class="col-md-2 col-md-offset-5"> 
+                <div id="demo3">
+                </div>
+           </div>
+     </div>
+</div>
    
 </body>
 </html>

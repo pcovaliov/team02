@@ -97,7 +97,6 @@ width:180px;
 
 <body>
 
-
 	<sec:authentication var="principal" property="principal" />
 
 	<!-- Static navbar -->

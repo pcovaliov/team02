@@ -43,7 +43,7 @@
 	$(function() {
 		var pageNumber = ${pageNumber};
 		if(pageNumber == 0)
-		{$('.discussion').html('post a tweet buddy')}
+		{$('.discussion').html('<div class="alert-box notice"><span>notice: </span>No tweets avalaible.</div>')}
 		else
 			$("#pagination").paginate(
 				{
@@ -187,6 +187,7 @@ width:180px;
 textarea {
 	align: center;
 	width:50%;
+	resize: none;
 }
 
 label {

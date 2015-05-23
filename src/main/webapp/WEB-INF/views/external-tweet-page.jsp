@@ -45,6 +45,7 @@
 		if(pageNumber == 0)
 		{$('.discussion').html('<div class="alert-box notice"><span>notice: </span>No tweets avalaible.</div>')}
 		else if (pageNumber == 1) {}
+		 else
 			$("#demo3").paginate(
 				{
 					count : pageNumber,

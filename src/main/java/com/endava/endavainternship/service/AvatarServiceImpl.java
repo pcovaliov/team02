@@ -1,60 +1,39 @@
-/*package com.endava.endavainternship.service;
-
+package com.endava.endavainternship.service;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 
-import org.springframework.stereotype.Service;
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
+import org.springframework.stereotype.Service;
 import com.endava.endavainternship.service.AvatarService;
 
 @Service
 public class AvatarServiceImpl implements AvatarService {
 
-private Cloudinary cloudinaryClient = null;
-	
-	public AvatarServiceImpl(){
-		this.cloudinaryClient = new Cloudinary(ObjectUtils.asMap(
-		  "cloud_name", "dyb61rwue",
-		  "api_key", "959825714278263",
-		  "api_secret", "M9bK9Nf6JExDvwiAZQ-QkIZef0s"));
-	}
-	@Override
-	public boolean validateImage(MultipartFile f) {
-		return true;
-//		ArrayList<String> validTypes = new ArrayList<String>();
-//		validTypes.add("image/jpg"); //todo: refactor, make it cute
-//		validTypes.add("image/jpeg");
-//			
-//		if(validTypes.contains(f.getContentType())){ //todo: check size of file
-//			return true;
-//		} else {
-//			return false;
-//		}
+@Override
+	public void validateImage(MultipartFile image) {
+		if ((!image.getContentType().equals("image/jpg")) || (!image.getContentType().equals("image/png")) ) {
+			throw new RuntimeException("Only JPG and PNG images are accepted");
+		}
 	}
 
 	@Override
-	public String saveImage(MultipartFile f) {
-		String resultUrl = null;
+	public void saveImage(String filename, MultipartFile image)
+			throws RuntimeException, IOException {
+		
 		try {
-			Map uploadResult = cloudinaryClient.uploader().upload(multipartToFile(f),  ObjectUtils.emptyMap());
-			resultUrl = (String) uploadResult.get("url");
+			      
+			String filePath = System.getProperty("catalina.home") + File.separator + "webapps" + File.separator +"ROOT"+ File.separator +"images" + File.separator;
+			System.out.println("FILE:"+filePath);
+			File file = new File(filePath + filename);
+			FileUtils.writeByteArrayToFile(file, image.getBytes());
+			System.out
+					.println("Go to the location:  "
+							+ file.toString()
+							+ " on your computer and verify that the image has been stored.");
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return resultUrl;
-	}
-	
-	public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
-	{
-	        File convFile = new File( multipart.getOriginalFilename());
-	        multipart.transferTo(convFile);
-	        return convFile;
+			throw e;
+		}	
 	}
 	
 }
-*/

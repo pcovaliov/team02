@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.endava.endavainternship.entity.Tweet;
 import com.endava.endavainternship.entity.User;
+import com.endava.endavainternship.service.AvatarService;
 import com.endava.endavainternship.service.TwitterService;
 import com.endava.endavainternship.service.UserService;
 //import com.endava.endavainternship.service.AvatarService;
@@ -45,9 +46,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private TwitterService twitterService;
-	
-	//@Autowired
-	//private AvatarService avatarService;
+	@Autowired
+	private AvatarService avatarService;
 	
 	
 	@RequestMapping(value = "/user" , method = RequestMethod.GET)
@@ -106,7 +106,7 @@ public class UserController {
 				//userService.validateImage(image);
 				user.setImageName(user.getFirstname() + user.getLastname() + ".jpg");
 				try {
-					userService.saveImage(user.getImageName(),	image);
+					avatarService.saveImage(user.getImageName(),image);
 				} catch (IOException e) {
 					result.reject(e.getMessage());
 					return "/login";

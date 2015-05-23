@@ -29,9 +29,9 @@
     <link href="resources/css/stanley/css/paginate.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="resources/css/stanley/js/hover.zoom.js"></script>
-    <script src="resources/css/stanley/hover.zoom.conf.js"></script>
-    <script src="resources/css/stanley/js/jquery.paginate.js"></script>
+    <script src="/endavainternship/resources/css/stanley/js/hover.zoom.js"></script>
+    <script src="/endavainternship/resources/css/stanley/js/hover.zoom.conf.js"></script>
+    <script src="/endavainternship/resources/css/stanley/js/jquery.paginate.js"></script>
     
     
     <!-- Script for display user -->

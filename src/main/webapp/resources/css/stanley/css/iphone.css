@@ -12,9 +12,9 @@ section {
 }
 
 .datedisplay{
-
+    background-color: white;
 	font-size:14px;
-	color:#FFFC00;
+	color:#000;
 	align:left;
 	margin-left: 255px;
 	border: 2px white solid;

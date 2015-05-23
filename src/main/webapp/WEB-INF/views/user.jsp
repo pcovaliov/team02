@@ -71,7 +71,10 @@
 
   <body>
   <sec:authentication var="principal" property="principal" />
-  ${principal.role} 
+  
+  
+  <a class="btn btn-danger" href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+   
     <!-- Static navbar -->
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="container">

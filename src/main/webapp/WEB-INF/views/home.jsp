@@ -163,9 +163,17 @@ width:180px;
 
 								<c:forEach items="${item.value}" var="tweet">
 									<div class="from-me">
-										${tweet.getTweet()} <br> <span class="datedisplay">Posted
+									<a href="/endavainternship/delete-tweet/${tweet.getId()}"><span class="trash"><img src="resources/css/stanley/img/trash1.png" width="15px" height="15px"></span></a>
+									<br>
+										${tweet.getTweet()}
+										
+										
+										 <br>
+										     
+										  <span class="datedisplay">Posted
 											: <fmt:formatDate value="${tweet.getDate()}"
 												pattern="yyyy-MM-dd HH:mm:ss" />
+												
 										</span>
 									</div>
 									

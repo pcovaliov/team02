@@ -20,6 +20,11 @@ public class Tweet {
 	
 	private Integer id;
 	private String tweet;
+	@Override
+	public String toString() {
+		return "Tweet [id=" + id + ", tweet=" + tweet + ", date=" + date
+				+ ", user=" + user + "]";
+	}
 	private Date date = new Date();
 	private User user;	
 	
@@ -55,7 +60,7 @@ public class Tweet {
 		this.date = date;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "UserID", nullable = false)
 	public User getUser() {
 		return user;

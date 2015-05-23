@@ -21,19 +21,26 @@ public class TwitterDAOImp  implements TwitterDAO{
 	
 	@Override
 	public Collection<Tweet> getTweetsForUser(User user) {
-		
 		Query q = sessionFactory.getCurrentSession().createQuery("from Tweet t where t.user = :user_id order by t.date DESC");
 		q.setInteger("user_id", user.getId());
-		
-		return q.list();
-		
-		
+		return q.list();	
 	}
 
 	@Override
 	public Tweet insertTweet(Tweet tweet) {
 		sessionFactory.getCurrentSession().save(tweet);
 		return tweet;
+	}
+
+	@Override
+	public void deleteTweetByID(int tweetID) {
+		Tweet tweet = (Tweet) sessionFactory.getCurrentSession().get(Tweet.class,
+				tweetID);
+		
+		if (null != tweet) {
+			sessionFactory.getCurrentSession().delete(tweet);
+		}
+
 	}
 
 }

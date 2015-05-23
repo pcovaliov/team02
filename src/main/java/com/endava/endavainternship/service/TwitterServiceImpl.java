@@ -31,6 +31,13 @@ public class TwitterServiceImpl implements TwitterService {
 		return twitterDAO.insertTweet(tweet);
 		
 	}
+
+	@Override
+	public void deleteTweetByID(int tweetID) {
+		
+     twitterDAO.deleteTweetByID(tweetID);
+		
+	}
 	
 
 	

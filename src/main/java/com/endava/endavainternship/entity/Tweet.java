@@ -38,7 +38,7 @@ public class Tweet {
 	}
 	
 	@Column(name = "Tweet")
-	@Size(min = 1, max = 147, message = "Invalid number of characters")
+	@Size(min = 1, max = 140, message = "Invalid number of characters")
 	public String getTweet() {
 		return tweet;
 	}

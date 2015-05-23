@@ -43,8 +43,8 @@
 	$(function() {
 		var pageNumber = ${pageNumber};
 		if(pageNumber == 0)
-		{$('.discussion').html('post a tweet buddy')}
-		else
+		{$('.discussion').html('<div class="alert-box notice"><span>notice: </span>No tweets avalaible.</div>')}
+		else if (pageNumber == 1) {}
 			$("#demo3").paginate(
 				{
 					count : pageNumber,

@@ -94,14 +94,7 @@
 
         </div>
 			
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
+	     
 	        <div id="login">   
 	          <h1>Welcome !</h1>
 	          
@@ -113,8 +106,7 @@
 	            </label>
 	            <input name="email" type="email"required autocomplete="off"/>
 	          </div> 
-	          <p class="forgot"><a href="#">Forgot Password?</a></p>
-	          
+	                  
 	          <button  type="submit" class="button button-block" />Log In</button>
 	          
 	          </form>

@@ -128,9 +128,7 @@ public class UserController {
 	public String deleteUser(@PathVariable("id") int userID) {
 		userService.removeUserByID(userID);
 		return "redirect:/user";
-	}
-	
-	
+	}	
 	
 	
 	@RequestMapping(value="/admin/edit-user/{id}", method = RequestMethod.GET)

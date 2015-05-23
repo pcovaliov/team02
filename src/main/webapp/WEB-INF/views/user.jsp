@@ -106,7 +106,7 @@
 	                   <p class="userEmailDisplay">${user.getEmail()}</p>
 	                     <br>
 	                     <br>
-	                     <a href="/endavainternship/home/${user.getId()}"><img src="/images/${user.getImageName() }" alt="Stanley" width="155" height="155" class="userDisplayList"/></a>
+	                     <a href="/endavainternship/home/${user.getId()}"><img src="/images/${user.getImageName()}" alt="Stanley" width="155" height="155" class="userDisplayList"/></a>
 	                        <c:if test="${principal.role == 'ROLE_ADMIN'}">
 	                     <a href="/endavainternship/admin/delete-user/${user.getId()}" >delete</a> /
 						 <a href="/endavainternship/admin/edit-user/${user.getId()}">edit</a>

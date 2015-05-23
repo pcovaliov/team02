@@ -75,6 +75,9 @@
 		<form:label path="email">Email</form:label>
 		<form:input path="email" class="register-input" />
 		<form:errors path="email" cssClass="error" />
+		
+		<form:input type="hidden"  path="imageName" class="register-input" />
+		
 		<br>
 		<button class="register-button" type="submit">Edit</button>
 

@@ -70,18 +70,17 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean updateUser(User user) {
-
-		User userFound = findUserByEmail(user.getEmail());
-		System.out.println(userFound);
-		if( userFound != null && userFound.getId().equals(user.getId())){
+		try {
+			if (user != null) {
 				sessionFactory.getCurrentSession().merge(user);
-
+				logger.info("user was update");
 				return true;
 			} else {
 				return false;
-
 			}
-		
-
+		} catch (Exception e) {
+			logger.error(" exception at updating user "+ user);
+			return false;
+		}
 	}
 }

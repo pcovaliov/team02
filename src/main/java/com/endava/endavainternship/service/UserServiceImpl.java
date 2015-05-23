@@ -86,11 +86,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public boolean updateUser(User user) {
+		System.out.println("*******1");
 		try{
+			System.out.println("*******2");
 			logger.info("User was updated : " + user);
-		return userDAO.updateUser(user);
+			boolean updateResult = userDAO.updateUser(user);
+			System.out.println("*******"+updateResult);
+		return  updateResult;
 		}
-		catch(Exception e){
+		catch(Exception e){System.out.println("*******3");
 			logger.error("ERROR : Updating user " + user);
 			return false;
 		}

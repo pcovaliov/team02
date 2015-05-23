@@ -10,4 +10,5 @@ public interface TwitterService {
 
 	public Collection<Tweet> getTweetsForUser(User user);
 	public Tweet addTweet(Tweet tweet);
+	public void deleteTweetByID(int tweetID);
 }

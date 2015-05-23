@@ -9,5 +9,6 @@ public interface TwitterDAO {
 
 	public Collection<Tweet> getTweetsForUser(User user);
 	public Tweet insertTweet(Tweet tweet);
+	public void deleteTweetByID(int tweetID);
 	
 }

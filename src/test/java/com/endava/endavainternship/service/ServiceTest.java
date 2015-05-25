@@ -131,7 +131,7 @@ public class ServiceTest {
 	@Test
 	public void shouldGetTweetsForUser() {
 		//creating the tweets for the user
-		int insertedTweets = 0;
+		int insertedTweets = twitterService.getTweetsForUser(testUser).size();
 		
 		for (int i = 0; i < 10; i++) {
 			testTweet.setId(null); //to make sure it's sent as null to insert

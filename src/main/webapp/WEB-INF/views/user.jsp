@@ -27,7 +27,6 @@
     
           <!-- Custom styles for pagination -->
     <link href="resources/css/stanley/css/paginate.css" rel="stylesheet">
-
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="resources/css/stanley/js/hover.zoom.js"></script>
     <script src="resources/css/stanley/hover.zoom.conf.js"></script>
@@ -46,7 +45,7 @@
 				{
 					count : pageNumber,
 					start : 1,
-					display : 10,
+					display : 5,
 					border : true,
 					border_color : '#BEF8B8',
 					text_color : '#fff',

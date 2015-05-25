@@ -37,6 +37,7 @@
 <script src="resources/css/stanley/js/charCount.js"></script>
 <script src="resources/css/stanley/js/jquery.paginate.js"></script>
 
+
 <!-- Script for pagination -->
 
 <script type="text/javascript">
@@ -83,9 +84,6 @@
 		});
 	});
 </script>
-
-
-
 <style>
 .bird{
 width:180px;

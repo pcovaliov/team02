@@ -81,7 +81,7 @@ public class HomeController {
 	@RequestMapping(value = "/" , method = RequestMethod.POST)
 	public String addTweet(@Valid @ModelAttribute("tweetObject") Tweet insertedTweet, BindingResult bindingResult,Map<String, Object> map) {
 		if(bindingResult.hasErrors()){
-			return "home";	
+			return "redirect:/";
 		}
 		
 		System.out.println("ololo"+insertedTweet.getTweet());

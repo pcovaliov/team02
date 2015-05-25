@@ -137,6 +137,7 @@ public class ServiceTest {
 			testTweet.setId(null); //to make sure it's sent as null to insert
 			testTweet.setTweet("TEST Tweet " + i);
 			twitterService.addTweet(testTweet);
+			System.out.println("test tweet :" + testTweet);
 			assertNotNull(testTweet.getId()); //just to check it not fails ...
 			// todo: comment later
 			insertedTweets++;

@@ -93,7 +93,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/register",  method = RequestMethod.POST)
 	public String addUser(@Valid @ModelAttribute("user") User user, 
-			@RequestParam("image") MultipartFile image, BindingResult result,
+			 BindingResult result,
+			 @RequestParam("image") MultipartFile image,
 			Map<String, Object> map ) {
 		System.out.println(user.getFirstname() + user.getLastname() + ".jpg");
 

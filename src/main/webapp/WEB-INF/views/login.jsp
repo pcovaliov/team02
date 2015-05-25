@@ -65,7 +65,7 @@
 	                First Name<span class="req">*</span>
 	              </label>
 	              <form:input type="text" path="firstname" autocomplete="off"/>
-	              <form:errors path="firstname"  />
+	              <form:errors path="firstname" class="error"  />
 	            </div>
 	        
 	            <div class="field-wrap">
@@ -73,7 +73,7 @@
 	                Last Name<span class="req">*</span>
 	              </label>
 	              <form:input type="text" path="lastname" autocomplete="off"/>
-	              <form:errors path="lastname"  />
+	              <form:errors path="lastname" class="error"  />
 	            </div>
 	          </div>
 	
@@ -82,7 +82,7 @@
 	              Email Address<span class="req">*</span>
 	            </label>
 	            <form:input type="text" path="email"  autocomplete="off" />
-	              <form:errors path="email"  />
+	              <form:errors path="email" class="error" />
 	          </div>
 	          <div class="field-wrap">
 	          	
@@ -93,15 +93,6 @@
           </form:form>
 
         </div>
-			
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
 	        <div id="login">   
 	          <h1>Welcome !</h1>
 	          
@@ -113,7 +104,7 @@
 	            </label>
 	            <input name="email" type="email"required autocomplete="off"/>
 	          </div> 
-	          <p class="forgot"><a href="#">Forgot Password?</a></p>
+	          
 	          
 	          <button  type="submit" class="button button-block" />Log In</button>
 	          
